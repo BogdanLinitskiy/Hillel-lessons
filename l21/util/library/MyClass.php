@@ -13,6 +13,6 @@ class MyClass
 {
 	public static function sayMethodName()
 	{
-		return __METHOD__;
+		return 'Hi i am sayMetodName from util\library';
 	}
 }

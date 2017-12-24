@@ -1,18 +1,12 @@
 <?php
-namespace main;
 
 ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-use util\library\MyClass as utMyClass;
+use util\library\MyClass as ulMyClass;
 use util\members\MyClass as umMyClass;
-
-
-
-require_once 'useful/Outputter.php';
-require_once 'util/library/MyClass.php';
-require_once 'util/members/MyClass.php';
+//use util\Helper;
 
 class Outputter{
 	public static function sayHello(){
@@ -32,14 +26,13 @@ class MyClass
 	}
 }
 
-//echo Outputter::sayHello();
-//echo '<br>';
-//echo \useful\Outputter::sayHello();
-//echo '<br>';
-//echo \util\library\MyClass::sayMethodName();
+function __autoload($class){
+	$path = str_replace('\\','/',$class).'.php';
+	if(file_exists($path)){
+		require $path;
+	}
+}
 
-echo MyClass::sayMethodName();
-echo '<br>';
-echo utMyClass::sayMethodName();
-echo '<br>';
-echo umMyClass::sayMethodName();
+echo ulMyClass::sayMethodName().'<br>';
+echo umMyClass::sayMethodName().'<br>';
+echo \util\Helper::sayHi();
